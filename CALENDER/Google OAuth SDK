@@ -1,3 +1,4 @@
+#source: https://karenapp.io/articles/how-to-automate-google-calendar-with-python-using-the-calendar-api/
 #first of all, to upload to file i need to have the google developer acc which is not free ( it costs 25$ but i will try to get it asap )
 #To connect to the Google Calendar API, we use SDK which is offered by google and set up OAuth
 
