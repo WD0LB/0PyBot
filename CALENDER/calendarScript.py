@@ -4,6 +4,11 @@
 #Compliment target: integrate Calendar with 0PyBot voice functinality
 
 #rules bro: comments comments comments :)
+#brthday: pop up
+#tasks day, create delete
+#content to text => voice
+#api google supp ;)
+#
 #______________________________________________________
 #1ST TARGET: GUI CALENDAR
 import calendar
