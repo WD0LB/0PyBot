@@ -3,6 +3,7 @@
 from tkinter import *
 from tkcalendar import Calendar
 
+#getting the current day
 from datetime import date
 today = str(date.today()).split('-')
 year = int(today[0])
@@ -16,9 +17,14 @@ tk = Tk()
 tk.geometry("700x700")
 
 # Add the Calendar module
-cal = Calendar(tk, selectmode = 'day',
+cal = Calendar(tk,cursor="hand1", selectmode = 'day',
                year = year, month = month,
                day = day)
+today_date = cal.datetime.today()
+cal.calevent_create(today_date, "testing","message")
+cal.calevent_create(today_date + cal.timedelta(days=-2), "testing","reminder")
+cal.calevent_create(today_date + cal.timedelta(days=5), "testing","message")
+cal.tag_config('reminder', background='red', foreground='yellow')
 
 cal.pack(pady = 20, fill="both", expand=True)
 
@@ -58,7 +64,7 @@ value = StringVar()
 value.set("texte par défaut")
 entree = Entry(tk, textvariable=value , width=30)
 entree.pack(pady = 20)
-fenetre['bg']='white'
+# fenetre['bg']='white'
 
 # # frame 1
 # Frame1 = Frame(fenetre, borderwidth=2, relief=GROOVE)
