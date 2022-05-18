@@ -2,8 +2,9 @@
 # Importing The Essential Libraries
 from tkinter import *
 from tkcalendar import Calendar
-from tasksGUI import taskGUI
+# from tasksGUI import taskGUI
 from tasks import tasksList
+from tkinterGridTest import dayTask
 #getting the current day
 from datetime import date
 today = str(date.today()).split('-')
@@ -28,18 +29,29 @@ cal.calevent_create(today_date, "testing","message")
 cal.calevent_create(today_date + cal.timedelta(days=-2), "testing","reminder")
 cal.calevent_create(today_date + cal.timedelta(days=5), "testing","message")
 cal.tag_config('reminder', background='red', foreground='yellow')
+# algorithm:
+'''
+first determine month // example may
+second grab 1st day events // important urgent
+add them with red color
+if there is no imporant urgent move to important not urgent
+and going on brother ;)
+and loop for all month days
 
+'''
 cal.pack(pady = 20, fill="both", expand=True)
 
 # Function to grab the selected date
 def grad_date():
     print(cal.get_date())
     date.config(text = "Selected Date is: " + cal.get_date())
-    taskGUI(tasksList)
+    # taskGUI(tasksList)
+    dayTask()
+
 
 
 # Adding the Button and Label
-Button(tk, text = "Get Date",
+Button(tk, text = "Get Day Tasks",
        command = grad_date).pack(pady = 20)
 
 date = Label(tk, text = "")

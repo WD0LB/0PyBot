@@ -1,0 +1,9 @@
+// TO DO:
+[]:Data base structure
+[]:Insert Data in GUI
+[]:Add Task
+[]:Remove
+[]:Done
+[]:change get date functionality into day tasks
+[]:Styling{padding, colors, font, ... }
+[]:check new improvements
