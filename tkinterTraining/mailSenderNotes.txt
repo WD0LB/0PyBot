@@ -1,2 +1,0 @@
-Create a new gmail account, change the address given in the code by the new one that you created, and also the password.
-Don't use your personnal or any gmail account that you actually use, create one for testing purposes.
