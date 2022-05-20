@@ -4,4 +4,4 @@
 * Idarrha Adam
 * D.. S..
 * Y.. R..
-* H.. K..
+* H. K..
