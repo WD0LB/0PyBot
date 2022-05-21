@@ -2,7 +2,7 @@
 * `Imad eddine Zerrouq` 
 * Youness Outaik
 * Idarrha Adam
-* D.. S..
-* Y.. R..
-* H. K..
+* Diabate Sekou
+* Yassine Rabitat Eddine
+* Hassan Khachia Errahman
 ![](intro.png)
