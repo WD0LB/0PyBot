@@ -1,0 +1,18 @@
+avant d'utiliser ce module il faut installer quelque libraries:
+*tensorflow
+*keras application
+*pillow
+*opencv
+*numpy
+
+il faut aussi executer cette commande pour recuperer un model de keras
+pip install git+https://github.com/rcmalli/keras-vggface.git
+
+
+si vous rencontrez un erreur par rapport au module keras.engine.topology
+
+il faut aller dans le fichier python du module : keras_vggface
+python3.7/dist-packages/keras_vggface/models.py et remplacer la ligne du code
+
+"from keras.engine.topology import get_source_inputs"  par  "from keras.utils.layer_utils import get_source_inputs"
+
