@@ -1,8 +1,8 @@
 * `Walid Laanibi`
 * `Imad eddine Zerrouq` 
-* Youness Outaik
+* `Youness Outaik`
 * `Idarrha Adam`
-* Diabate Sekou
-* Yassine Rabitat Eddine
+* `Diabate Sekou`
+* `Yassine Rabitat Eddine`
 * `Hassan Khachia Errahman`
 ![](intro.png)
