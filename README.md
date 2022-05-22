@@ -4,5 +4,5 @@
 * `Idarrha Adam`
 * Diabate Sekou
 * Yassine Rabitat Eddine
-* Hassan Khachia Errahman
+* `Hassan Khachia Errahman`
 ![](intro.png)
