@@ -6,7 +6,7 @@ class Camera:
     
 
     def __init__(self) -> None:
-        self._cam=VideoCapture(0,CAP_DSHOW) #select internal camera as feed source
+        self._cam=0 #select internal camera as feed source
         self.snaps=[] # to store captured frames
         self.stop_cdt=False # condition to stop the camera feed
         self.mutex=Lock()   # Mutex for access control to stop condition
@@ -44,6 +44,14 @@ class Camera:
         else:
             return self.snaps
     
+    def get_cam(self):
+        if (self._cam==0):
+            self._cam=VideoCapture(0,CAP_DSHOW)
+
+    def release_cam(self):
+        if self._cam.isOpened():
+            self._cam.release()
+            self._cam=0
     # this function detects faces and return detection box coordinates
     def get_face_box(self,fra,detector): 
         result=detector.detect_faces(fra)

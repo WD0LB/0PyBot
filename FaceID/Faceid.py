@@ -20,6 +20,7 @@ class Faceid:
     
     #This function Handles registration logic
     def register(self):
+        self.cam.get_cam()
         self.cam.start_feed()   #Show camera feed
         self.userDB=self.get_reg_list()
         username=input("Username:").strip() #Get username
@@ -32,9 +33,11 @@ class Faceid:
             self.cam.save_snaps(pic_path,username)  #Save all pictures to DB
             self.save_reg_list()    #Save username to RegIndex
             self.cam.stop_feed()
+            self.cam.release_cam()
             return 1
         else:
             self.cam.stop_feed()    #Stop Camera feed
+            self.cam.release_cam()
             print("[!!!!!!!!!!!] Username not Valid")
             return 0
 
@@ -59,6 +62,8 @@ class Faceid:
 
     #this function handles authentication logic
     def authenticate(self):
+        self.cam.get_cam()
+        self.cam.start_feed()
         self.userDB=self.get_reg_list() #get all usernames in DB
         self.userDB
         if(self.userDB.__len__()!=0):
@@ -66,7 +71,6 @@ class Faceid:
             username.upper()
             if not(username in self.userDB or username==""):    #Check if user is trying to log to an existing username
                 for i in range(0,self.__PIC_CAP):
-                    self.cam.start_feed()
                     client=self.cam.snap(1,self.au.detector) #take a pic for the client
                     users=self.cam.load_snaps(username) # load pic of existing candidates
                     # prepare all pictures for processing 
@@ -82,22 +86,29 @@ class Faceid:
                     if((score)<=self.threshold):
                         print(f"Successfully Loged In as {username} \ Score: {score} :)")
                         self.cam.stop_feed()
+                        self.cam.release_cam()
                         return 1
                     else :
                         continue
                 print(f"You are Not {username} \ Score: {score} :( ")
                 self.cam.stop_feed()
+                self.cam.release_cam()
                 return 0
             else:
                 print("Username not Valid")
+                self.cam.stop_feed()
+                self.cam.release_cam()
                 return 0
         else:
+            self.cam.stop_feed()
+            self.cam.release_cam()
             return 0
 
 
 def test():
     #test if authenticate can be called before registre
     id=Faceid()
+    id.register()
     execode=id.authenticate()
     print("execode: " +str(execode))
 
@@ -106,4 +117,3 @@ def test():
 
 
 if __name__=='__main__':
-    test()
