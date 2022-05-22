@@ -1,7 +1,7 @@
 * `Walid Laanibi`
 * `Imad eddine Zerrouq` 
 * Youness Outaik
-* Idarrha Adam
+* `Idarrha Adam`
 * Diabate Sekou
 * Yassine Rabitat Eddine
 * Hassan Khachia Errahman
