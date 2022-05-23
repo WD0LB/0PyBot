@@ -4,11 +4,11 @@ import tkinter as tk
 import smtplib
 import pyttsx3
 import re
-import tkcalenderExamples
+import calGUI
 import Faceid
 
 #constantes
-DESCRIPTION_BOT = '''the 0py bot is a bot made by a groupe of cyber-defense students, it has functionality to allow speech recognition
+DESCRIPTION_BOT = '''the julia bot is a bot made by a groupe of cyber-defense students, it has functionality to allow speech recognition
 facial recognition and also a calendar , it can do alot of tasks'''
 
 #check which button was clicked
@@ -34,7 +34,7 @@ mic=sr.Microphone()
 #root window
 root=tk.Tk()
 root.geometry("800x600")
-root.title("0PyBot")
+root.title("juliaBot")
 root.configure(bg='white')
 
 #the email sending function
@@ -98,9 +98,9 @@ def aboutBot():
     say("I'm Julia, here's some informations about me")
     root=tk.Tk()
     root.geometry("800x600")
-    root.title("About 0PyBot")
+    root.title("About julia Bot")
     root.configure(bg='white')
-    title_label=tk.Label(root,text="About 0PyBot",font=("Helvetica",20,"bold"),bg='white')
+    title_label=tk.Label(root,text="About julia Bot",font=("Helvetica",20,"bold"),bg='white')
     title_label.pack()
     description = tk.StringVar()
     description_label = tk.Label(root, textvariable=description)
@@ -130,11 +130,7 @@ def say(text):
     engine.runAndWait()
 
 def open_calendar():
-    calendar_window = tk.Tk()
-    tk.Button(calendar_window, text='Calendar', command=tkcalenderExamples.example1).pack(padx=10, pady=10)
-    tk.Button(calendar_window, text='Calendar with events', command=tkcalenderExamples.example2).pack(padx=10, pady=10)
-    tk.Button(calendar_window, text='DateEntry', command=tkcalenderExamples.example3).pack(padx=10, pady=10)
-    calendar_window.mainloop()
+    calGUI.calGUI()
 
 #recognition function
 def rec():
