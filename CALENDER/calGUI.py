@@ -43,9 +43,9 @@ def calGUI():
     # Function to grab the selected date
     def grad_date():
         print(cal.get_date())
-        date.config(text = "Selected Date is: " + cal.get_date())
-        # taskGUI(tasksList)
-        dayTask()
+        pickedDate = cal.get_date()
+        date.config(text = "Selected Date is: " +pickedDate)
+        dayTask(pickedDate)
 
 
 
@@ -59,5 +59,5 @@ def calGUI():
 
     # Execute Tkinter
     tk.mainloop()
-    
+
 calGUI()
