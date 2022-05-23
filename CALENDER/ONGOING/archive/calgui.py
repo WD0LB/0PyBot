@@ -1,8 +1,6 @@
-#https://towardsdatascience.com/develop-your-own-calendar-to-track-important-dates-with-python-c1af9e98ffc3
 # Importing The Essential Libraries
 from tkinter import *
 from tkcalendar import Calendar
-# from tasksGUI import taskGUI
 from tasks import tasksList
 from tkinterGridTest import dayTask
 #getting the current day
