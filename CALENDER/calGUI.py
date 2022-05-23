@@ -9,7 +9,7 @@ today = str(date.today()).split('-')
 year = int(today[0])
 month = int(today[1])
 day = int(today[2])
-def calgui():
+def calGUI():
 
     # Create The Gui Object
     tk = Tk()
@@ -59,4 +59,4 @@ def calgui():
 
     # Execute Tkinter
     tk.mainloop()
-calgui()
+calGUI()
