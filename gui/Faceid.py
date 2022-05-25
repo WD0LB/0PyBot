@@ -20,7 +20,7 @@ class Faceid:
     
     #This function Handles registration logic
     def register(self, name):
-        self.cam.start_feed()   #Show camera feed
+        #self.cam.start_feed()   #Show camera feed
         self.userDB=self.get_reg_list()
         username=name #Get username
         username=username.upper()   #Santize
@@ -66,7 +66,7 @@ class Faceid:
             username.upper()
             if not(username in self.userDB or username==""):    #Check if user is trying to log to an existing username
                 for i in range(0,self.__PIC_CAP):
-                    self.cam.start_feed()
+                    #self.cam.start_feed()
                     client=self.cam.snap(1,self.au.detector) #take a pic for the client
                     users=self.cam.load_snaps(username) # load pic of existing candidates
                     # prepare all pictures for processing 

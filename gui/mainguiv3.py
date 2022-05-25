@@ -6,10 +6,13 @@ import pyttsx3
 import re
 import calGUI
 import Faceid
+import Google_Searching_Feature
 
 #constantes
-DESCRIPTION_BOT = '''the julia bot is a bot made by a groupe of cyber-defense students, it has functionality to allow speech recognition
-facial recognition and also a calendar , it can do alot of tasks'''
+DESCRIPTION_BOT = '''the julia bot is a bot made by a groupe of cyber-defense students, it can do alot of tasks like :
+automatic email sending, 
+facial authentication 
+and it can even manage the user's daily tasks '''
 
 #check which button was clicked
 RECOGNIZE_BUTTON = 1
@@ -20,6 +23,7 @@ first_time = True
 
 #intanciate result to not give error if we want to give command first
 result = 5
+username = ""
 
 #python text to speech
 engine=pyttsx3.init()
@@ -91,8 +95,10 @@ def emailSending():
     btnSend=tk.Button(w3,text="Confirm",command=storePassword,border=0)
     btnSend.grid(row=3,column=1)
     #engine.runAndWait()
-    w3.mainloop()
-
+    try:
+        w3.mainloop()
+    except:
+        pass
 #the aboutBot button function
 def aboutBot():
     say("I'm Julia, here's some informations about me")
@@ -154,10 +160,12 @@ def rec():
 
 #function called if recognize requests button was clicked
 def request_recognition():
+    global first_time
     if(first_time):
-        say("hi , i'm juila bot , how can i help you ?")
+        say("hi , i'm julia , how can i help you ?")
+        first_time = False
     else:
-        say("what else can i do for you ?")
+        say(f"what else can i do for you {username}?")
     #call rec to recognize speech
     recognize = rec()
 
@@ -166,7 +174,7 @@ def request_recognition():
 
 
     elif "hi bot" in recognize:
-        say("Hi Yassine, how is it going ?")
+        say(f"Hi {username}, how is it going ?")
             
 
     elif "close" in recognize:
@@ -187,20 +195,30 @@ def request_recognition():
     elif "authenticate" in recognize:
         #authenticate command via speech
         authenticate_me()
-    #separate if elif for commands that need authentication
     
-    if "calendar" in recognize and result == 1:        
-        say("opening calendar")
-        open_calendar()
+    elif "search" in recognize:
+        say("please tell me what to search for")
 
-    elif "send email" in recognize and result == 1:
-        say("Opening email window")
-        email_thread = threading.Thread(target=emailSending)    
-        email_thread.daemon = True
-        email_thread.start()
-
+    #separate if elif for commands that need authentication if nothing else works
     else:
-        say("these actions need you to be authenticated first . you can authenticate by voice command or the button")        
+        if "calendar" in recognize and result == 1:        
+            say("opening calendar")
+            open_calendar()
+
+        elif "email" in recognize and result == 1:
+            say("Opening email window")
+            email_thread = threading.Thread(target=emailSending)    
+            email_thread.daemon = True
+            email_thread.start()
+
+        else:
+            say("these actions need you to be authenticated first . you can authenticate by voice command or the button")        
+
+def search():
+    say(f"what would you like me to search for {username}?")
+    recognize = rec()
+    say(f"alright , i'm going to search for {recognize} in google , you should see a window open with your search results")
+    Google_Searching_Feature.open_browser(recognize)
 
 #function called if the authenticate button was clicked
 def authenticate_me():
@@ -213,22 +231,22 @@ def authenticate_me():
     say("i'm going to take 4 pictures of you , please look straight at the camera")
     facialRecognition = Faceid.Faceid()
     if "register" in recognize:
-        facialRecognition.register()
+        facialRecognition.register(username)
         #then proceed to authenticate the user 
-        say("now i'm going to authenticate you to see if i'm able to recognize you")
+        say(f"you have been registered as {username},now i'm going to authenticate you to see if i'm able to recognize you")
     else:
         say("ok , i'm going to authenticate you now")
-    #warn them that you will take 4 pictures so they look at the camera
-    username = getUsername()
+        #warn them that you will take 4 pictures so they look at the camera
+        username = getUsername()
     say("i'm now going to take 1 picture of you , please look directly at the camera in a well lit area")
-    result = facialRecognition.authenticate()
+    result = facialRecognition.authenticate(username)
     if(result == 1):
         say(f"you have been successfully authenticated as {username}, you may now use the entirety of juila bot")
     elif(result == 2):
-        say("the bot wasn't able to authenticate you because you haven't registered yet")
+        say(f"the bot wasn't able to authenticate you as {username}because you haven't registered yet")
     else:
-        say("the bot wasn't able to facially recognize you , please try again ")
-    return result
+        say(f"the bot wasn't able to facially recognize you as {username}, please try again ")
+    
 
 #function to get username for registering and authenticating to add text version
 def getUsername():

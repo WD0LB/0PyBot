@@ -65,7 +65,7 @@ class Camera:
         while(True):
             ret,frame=self._cam.read()
             gray=cvtColor(frame,COLOR_BGR2GRAY)
-            box=self.face_cascade.detectMultiScale(gray,scaleFactor=1.5,minNeighbors=5)
+            #box=self.face_cascade.detectMultiScale(gray,scaleFactor=1.5,minNeighbors=5)
             for (x1,y1,width,height) in box:
                 x2,y2=x1+width,y1+height
                 rectangle(frame,(x1,y1),(x2,y2),(255,0,0),2)
